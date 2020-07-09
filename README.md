@@ -1,0 +1,1 @@
+![](apresentacao/assets/img/seminario.png)

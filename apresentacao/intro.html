@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Seminário | Trabalhando com API no R</title>
+
+  <meta property="og:title" content="Trabalhando com API no R" />
+  <meta property="og:type" content="book" />
+  <meta name="twitter:title" content="Trabalhando com API no R" />
+  <meta name="author" content="Valéria Nicéria" />
+  <meta name="date" content="2020-07-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <link rel="shortcut icon" href="./assets/img/icon.png" />
+  
+  
+
+<link rel="prev" href="index.html"/>  
+<link rel="next" href="intro.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+
+
+<div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+  <div class="book-summary">
+    <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" style="color: #153243;" title="Trabalhando com API no R">Trabalhando com API no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="intro.html">
+  <a href="intro.html" style="color: white;">
+    <i class="fa fa-check"></i><b>》</b> <b>Introdução</b>
+  </a>
+</li>
+<li class="chapter" data-level="3" data-path="acessando.html">
+  <a href="acessando.html" style="color: white;">
+    <i class="fa fa-check"></i><b>》</b> Acessando API
+  </a>
+</li>
+<li class="chapter" data-level="" data-path="referencias.html">
+  <a href="referencias.html" style="color: white;">
+    <i class="fa fa-check"></i><b>❝</b> Referências
+  </a>
+</li>
+
+<li class="chapter footer">
+  <a href="https://operdata.com.br/" title="Seminário | Oper" style="color: white;">
+    <b class="text-footer">Seminário</b>
+    <img class="img-oper" alt="Seminário | Oper" src="./assets/img/oper.png" >
+  </a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Trabalhando com API no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Trabalhando com API no R</h1>
+<p class="author"><em>Valéria Nicéria</em></p>
+<p class="date"><em>10 de Julho de 2020</em></p>
+</div>
+   
+<div id="introdução" class="section level1">
+  <h2>Introdução</h2>
+  <p>Os dados é um dos elementos mais importantes de um projeto de Ciência de dados. E existem várias formas de se obter os dados, mas as APIs que é uma sigla para o termo em inglês <em>“Application Programming Interface”</em> ou traduzindo para o português <em>“Interface de Programação para Aplicativos”</em>, vem se tornando uma das formas mais comuns de se obter os dados, onde iremos fazer uma requisição a uma <em>URL</em>, que por sua vez, nos retornará uma resposta e uma das grandes vantagens de utilizar APIs é que ela não depende de uma linguagem de programação, mas todos os exemplos que mostrarei aqui, serão utilizando a linguagem R. E antes de exemplificar como podemos acessar e criar uma API no R, vamos entender algumas coisas relacionadas a API de forma geral.</p>
+  <div id="endpoint" class="section level3">
+  <h3>Endpoint</h3>
+  <p>O endpoint é uma <em>URL</em> que é um caminho, onde iremos fazer uma requisição e que possui a seguinte estrutura.</p>
+  <ul>
+  <li><p><strong>Base URL:</strong> É o início da URL da requisição, que se repetirá em qualquer requisição que iremos fazer.
+  <br/>
+  <i>Ex.:</i> <code>https://api.covid19api.com/</code></p></li>
+  <li><p><strong>Resource ou Path:</strong> É o tipo de informação que estamos buscando.
+  <br/>
+  <i>Ex.:</i> <code>https://api.covid19api.com/country/brazil/status/confirmed</code></p></li>
+  <li><p><strong>Query String:</strong> São os parâmetros da requisição, onde poderemos utilizar para fazer filtros, paginação, versionamento, ordenação e etc…
+  <br/>
+  <i>Ex.:</i> <code>https://api.covid19api.com/country/brazil/status/confirmed&from=2020-06-01T00:00:00Z&to=2020-07-07T00:00:00Z</code></p></li>
+  </ul>
+  <p><img src="assets/img/base_url.png" /></p>
+  </div>
+  <div id="métodos" class="section level3">
+  <h3>Métodos</h3>
+  <p>Os métodos nos ajudam no momento da requisição a informar o tipo de ação que queremos fazer naquele momento e esses são os principais métodos existentes:</p>
+  <ul>
+  <li><strong>GET:</strong> Busca os dados.</li>
+  <li><strong>POST:</strong> Envia os dados.</li>
+  <li><strong>PUT/PATCH:</strong> Atualiza os dados.</li>
+  <li><strong>DELETE:</strong> Exclui os dados.</li>
+  </ul>
+  </div>
+  <div id="código-de-status-http" class="section level3">
+  <h3>Código de status HTTP</h3>
+  <p>HTTP ou do inglês "Hyper Text Transfer Protocol" é um protocolo de comunicação de dados do mundo da internet. Onde existem padrões de códigos de status, que facilitam o entendimento das respostas das APIs.</p>
+  <p>Os códigos de respostas mais utilizados são:</p>
+  <ul>
+    <li><strong>200:</strong> Requisição foi bem sucedida.</li>
+    <li><strong>201:</strong> Requisição foi bem sucedida e um novo recurso foi criado como resultado.</li>
+    <li><strong>204:</strong> Não há conteúdo para enviar para esta solicitação.</li>
+    <li><strong>400:</strong> Essa resposta significa que o servidor não entendeu a requisição.</li>
+    <li><strong>404:</strong> O servidor não pode encontrar o recurso solicitado.</li>
+    <li><strong>500:</strong> O servidor encontrou uma situação com a qual não sabe lidar.</li>
+  </ul>
+  
+  </div>
+  </div>
+              </section>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>      
+<a href="acessando.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script src="./assets/js/index.js"></script>
+</body>
+
+</html>

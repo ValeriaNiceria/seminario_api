@@ -1,1 +1,1 @@
-![](apresentacao/assets/img/seminario.png)
+![](docs/assets/img/seminario.png)

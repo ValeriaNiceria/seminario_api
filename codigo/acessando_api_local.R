@@ -24,11 +24,10 @@ content_json <- fromJSON(content)
 
 
 
-req <- POST(
+req <- GET(
   url = "http://127.0.0.1:8888/preverfilme",
   body = list(
     orcamento = 75000,
     ano = 1996
-  ),
-  httr::content_type("application/octet-stream")
+  )
 )

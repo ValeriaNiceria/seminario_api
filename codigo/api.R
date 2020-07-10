@@ -24,33 +24,16 @@ modelo <- lm(rating ~ budget + year, data = dados)
 # summary(modelo)
 
 
-# #* @post /prever
-# prever_nota <- function(orcamento, ano) {
-#  nota <- predict(modelo, newdata = data.frame(
-#     budget = as.numeric(orcamento), 
-#     year = as.numeric(ano)
-#   ))
-#  
-#  nota
-#  
-#  # paste("A nota prevista para o filme do ano", ano, "com o orcamento de", orcamento, "e:", nota)
-# }
+#* @get /prever
+prever_nota <- function(orcamento, ano) {
+ nota <- predict(modelo, newdata = data.frame(
+    budget = as.numeric(orcamento),
+    year = as.numeric(ano)
+  ))
 
-#* @post /preverfilme
-prever_nota_filme <- function(req, orcamento, ano) {
-  
-  body <- req$robj
-  body
-  
-  # body$orcamento
-  # body$ano
-  
-  # list(
-  #   orcamento = orcamento,
-  #   ano = ano
-  # )
-  # d <- data.frame(budget = as.numeric(orcamento), year = as.numeric(ano))
-  # predict(modelo, newdata = d)
+ nota
+
+ # paste("A nota prevista para o filme do ano", ano, "com o orcamento de", orcamento, "e:", nota)
 }
 
 
